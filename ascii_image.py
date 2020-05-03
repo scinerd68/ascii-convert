@@ -17,6 +17,8 @@ def get_brightness(pixel, brightness_type):
         return sum(pixel)//len(pixel)
     elif brightness_type == 'luminosity':
         return 0.21 * pixel[0] + 0.72 * pixel[1] + 0.07 * pixel[2]
+    elif brightness_type == 'lightness':
+        return (max(pixel) + min(pixel))/2
 
 def map_brightness_to_ascii(pixel):
     ascii_index = round((pixel * len(ascii_chars))/255)
@@ -37,3 +39,5 @@ def print_matrix(img, brightness_type):
 print_matrix(img, 'average')
 print()
 print_matrix(img, 'luminosity')
+print()
+print_matrix(img, 'lightness')
