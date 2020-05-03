@@ -12,8 +12,11 @@ def get_pixel_matrix(img, height):
     pixels = list(img.getdata())
     return [pixels[i:i+img.width] for i in range(0, len(pixels), img.width)]
 
-def get_brightness(pixel):
-    return sum(pixel)//len(pixel)
+def get_brightness(pixel, brightness_type):
+    if brightness_type == 'average':
+        return sum(pixel)//len(pixel)
+    elif brightness_type == 'luminosity':
+        return 0.21 * pixel[0] + 0.72 * pixel[1] + 0.07 * pixel[2]
 
 def map_brightness_to_ascii(pixel):
     ascii_index = round((pixel * len(ascii_chars))/255)
@@ -21,14 +24,16 @@ def map_brightness_to_ascii(pixel):
         ascii_index = len(ascii_chars) - 1
     return ascii_chars[ascii_index]
 
-def print_matrix(img):
+def print_matrix(img, brightness_type):
     pixel_matrix = get_pixel_matrix(img, 1000)
     for x in range(len(pixel_matrix)):
         for y in range(len(pixel_matrix[x])):
-            pixel_brightness = get_brightness(pixel_matrix[x][y])
+            pixel_brightness = get_brightness(pixel_matrix[x][y], brightness_type)
             pixel = map_brightness_to_ascii(pixel_brightness)
             pixel_matrix[x][y] = pixel
     for i in range(len(pixel_matrix)):
         print(''.join(pixel_matrix[i]))
 
-print_matrix(img)
+print_matrix(img, 'average')
+print()
+print_matrix(img, 'luminosity')
