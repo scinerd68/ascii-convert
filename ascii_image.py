@@ -36,8 +36,5 @@ def print_matrix(img, brightness_type):
     for i in range(len(pixel_matrix)):
         print(''.join(pixel_matrix[i]))
 
-print_matrix(img, 'average')
-print()
-print_matrix(img, 'luminosity')
-print()
-print_matrix(img, 'lightness')
+brightness_type = input("which type of brightness (average, luminosity, lightness)? ")
+print_matrix(img, brightness_type)
