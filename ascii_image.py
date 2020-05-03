@@ -5,7 +5,7 @@ img = Image.open("car.jpg")
 print("Successfully loaded image")
 print("Size of image:", img.size[0], "x", img.size[1])
 
-ascii_chars = "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
+ascii_chars = r"`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
 
 def get_pixel_matrix(img, height):
     img.thumbnail((height, 120))
